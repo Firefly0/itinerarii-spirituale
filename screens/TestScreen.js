@@ -8,11 +8,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
+import {TestComponent} from '../components/AppComponents'
 
-import { MonoText } from '../components/StyledText';
-
-export default class HomeScreen extends React.Component {
+export default class TestScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -21,6 +19,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={{paddingTop: 20}}>
         <Text>Hi</Text>
+        <TestComponent/>
       </View>
     );
   }
