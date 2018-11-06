@@ -1,14 +1,32 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
+import ApiKeys from './constants/ApiKeys';
+import * as firebase from 'firebase'
 
 export default class App extends React.Component {
-  state = {
-    isLoadingComplete: false,
-  };
+  constructor(){
+    super()
+    this.state = {
+      isLoadingComplete: false,
+    };
 
+    //Initialize firebase
+    if(firebase.apps.length){firebase.initializeApp(ApiKeys.FirebaseConfig);}
+    if (!firebase.apps.length) {
+      firebase.initializeApp(ApiKeys.FirebaseConfig);
+  }  
+  }
   render() {
+    readUserData=()=> {
+      console.log('i')
+      firebase.database().ref('/some').on('value', snapshot => {
+          console.log('ok')
+          console.log(snapshot.val())
+      });
+  }
+    console.log('i m in')
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -20,8 +38,9 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
+        <Text onPress={()=>readUserData()}>Something</Text>
+          {/* {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator /> */}
         </View>
       );
     }
@@ -58,5 +77,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: 40
   },
 });
