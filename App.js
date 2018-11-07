@@ -38,9 +38,8 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-        <Text onPress={()=>readUserData()}>Something</Text>
-          {/* {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator /> */}
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator />
         </View>
       );
     }

@@ -17,9 +17,9 @@ export default class TestScreen extends React.Component {
 
   render() {
     return (
-      <View style={{paddingTop: 20}}>
-        <Text>Hi</Text>
-        <TestComponent/>
+      <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: 'azure', flex: 1}}>
+        <Text>Hello Raluca</Text>
+        <Text>Let's the fun begin</Text>
       </View>
     );
   }
