@@ -44,7 +44,8 @@ class Main extends Component {
             autori: doc.data().Autori,
             evanghelia: doc.data().Evanghelia,
             id: doc.data().title,
-            linkPhoto: doc.data().LinkPhoto
+            linkPhoto: doc.data().LinkPhoto,
+            color: doc.data().color
           };
           arrayM.push(news);
         });
@@ -67,9 +68,10 @@ class Main extends Component {
     console.log('state', this.state);
     return (
       <ScrollView>
-        <List containerStyle={{ backgroundColor: 'green' }}>
+        <List>
           {imGood.map(item => (
             <ListItem
+              containerStyle={{ backgroundColor: item.color || 'green' }}
               key={item.autori}
               roundAvatar
               avatar={{ uri: item.linkPhoto }}
@@ -79,7 +81,9 @@ class Main extends Component {
             />
           ))}
         </List>
-        <Button onPress={() => this.callFirestore()}>Something</Button>
+        <Button onPress={() => this.callFirestore()} title={'Reload Data'}>
+          Something
+        </Button>
         {/* {this.state.docs.length && (
           <View>
             <Text>some</Text>

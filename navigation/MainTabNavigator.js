@@ -65,6 +65,5 @@ const MainStack = createStackNavigator({
 });
 
 export default createBottomTabNavigator({
-  MainStack,
-  HomeStack
+  MainStack
 });
