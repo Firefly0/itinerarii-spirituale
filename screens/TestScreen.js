@@ -19,7 +19,7 @@ export default class TestScreen extends React.Component {
     return (
       <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: 'azure', flex: 1}}>
         <Text>Hello Raluca</Text>
-        <Text>Let's the fun begin</Text>
+        <Text>Wazz up?</Text>
       </View>
     );
   }
