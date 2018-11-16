@@ -10,6 +10,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import TestScreen from '../screens/TestScreen';
 import Main from '../screens/auth/Main';
 import Details from '../screens/auth/Details';
+import Compozitia from '../screens/auth/Compozitia';
 
 const HomeStack = createStackNavigator({
   Home: TestScreen
@@ -39,7 +40,7 @@ const MainStack = createStackNavigator({
         shadowColor: 'white',
         elevation: 0,
         marginTop: -10,
-        height: 30
+        height: 40
       },
       tabBarLabel: 'Home',
       title: 'Itinerar',
@@ -58,7 +59,20 @@ const MainStack = createStackNavigator({
         shadowColor: 'white',
         elevation: 0,
         marginTop: -10,
-        height: 30
+        height: 40
+      }
+    })
+  },
+  Compozitia: {
+    screen: Compozitia,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.value.toUpperCase()}`,
+      headerStyle: {
+        backgroundColor: '#27A9E1',
+        shadowColor: 'white',
+        elevation: 0,
+        marginTop: -10,
+        height: 40
       }
     })
   }

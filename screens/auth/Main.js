@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import { List, ListItem, Button } from 'react-native-elements';
 import { users } from '../../constants/data';
+import { AsyncStorage } from 'react-native';
 
 import ApiKeys from '../../constants/ApiKeys';
 import * as firebase from 'firebase';
@@ -35,27 +36,49 @@ class Main extends Component {
       .then(querySnapshot => {
         let arrayM = [];
         querySnapshot.forEach(function(doc) {
-          console.log('1');
-          console.log(doc.id, ' =>.. ', doc.data());
           let data = doc.data();
-          console.log('data', data);
-          console.log('auth', doc.data().Autori);
           let news = {
             autori: doc.data().Autori,
             evanghelia: doc.data().Evanghelia,
             id: doc.data().title,
             linkPhoto: doc.data().LinkPhoto,
-            color: doc.data().color
+            color: doc.data().color,
+            meditatia: doc.data().Meditatia,
+            rugaciune: doc.data().Rugaciune,
+            indemn: doc.data().Indemn
           };
           arrayM.push(news);
         });
-        console.log('ar', arrayM);
         this.setState({ imGood: arrayM }, () => {
-          console.log(this.state);
+          console.log('here');
+          console.log('first async');
+          try {
+            AsyncStorage.setItem('arrayM', JSON.stringify(arrayM));
+            console.log('set it');
+          } catch (error) {
+            // Error retrieving data
+            console.log('error.message');
+          }
         });
       });
   };
+  retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('arrayM');
+      if (value !== null) {
+        this.setState({ imGood: JSON.parse(value) }, () => {
+          console.log('newState', this.state);
+        });
+      } else {
+        console.log('no data found');
+      }
+    } catch (error) {
+      console.log('retrive data -- no data');
+      // Error retrieving data
+    }
+  };
   componentDidMount() {
+    this.retrieveData();
     this.callFirestore();
   }
 
@@ -71,11 +94,11 @@ class Main extends Component {
         <List>
           {imGood.map(item => (
             <ListItem
-              containerStyle={{ backgroundColor: item.color || 'green' }}
               key={item.autori}
+              containerStyle={{ backgroundColor: item.color || 'green' }}
               roundAvatar
               avatar={{ uri: item.linkPhoto }}
-              title={item.autori}
+              title={item.id}
               subtitle={item.autori}
               onPress={() => this.onLearnMore(item)}
             />

@@ -9,6 +9,10 @@ class Details extends Component {
   render() {
     const { item } = this.props.navigation.state.params;
 
+    onLearnMore = (item, value) => {
+      this.props.navigation.navigate('Compozitia', { item, value });
+    };
+
     onPressEvangh = value => {
       console.log(value);
     };
@@ -17,7 +21,7 @@ class Details extends Component {
         name="wikipedia-w"
         size={100}
         color="#900"
-        //onPress={() => onPressEvangh(evanghelia)}
+        onPress={() => onLearnMore(item, (value = 'evanghelia'))}
       />
     );
     const meditatiaIcon = (
@@ -25,7 +29,7 @@ class Details extends Component {
         name="commenting"
         size={100}
         color="#b4f324"
-        // onPress={() => onPressEvangh(name)}
+        onPress={() => onLearnMore(item, (value = 'meditatie'))}
       />
     );
     const rugaciuneIcon = (
@@ -33,7 +37,7 @@ class Details extends Component {
         name="arrow-left"
         size={100}
         color="#f12345"
-        // onPress={() => onPressEvangh(email)}
+        onPress={() => onLearnMore(item, (value = 'rugaciune'))}
       />
     );
     const gandIcon = (
@@ -41,7 +45,7 @@ class Details extends Component {
         name="quote-right"
         size={100}
         color="#654321"
-        // onPress={() => onPressEvangh(name)}
+        onPress={() => onLearnMore(item, (value = 'gand'))}
       />
     );
     return (
