@@ -27,40 +27,44 @@ class Main extends Component {
     this.setState({ data: data });
   };
   callFirestore = () => {
-    const db = firebase.firestore();
-    db.settings({
-      timestampsInSnapshots: true
-    });
-    db.collection('Advent')
-      .get()
-      .then(querySnapshot => {
-        let arrayM = [];
-        querySnapshot.forEach(function(doc) {
-          let data = doc.data();
-          let news = {
-            autori: doc.data().Autori,
-            evanghelia: doc.data().Evanghelia,
-            id: doc.data().title,
-            linkPhoto: doc.data().LinkPhoto,
-            color: doc.data().color,
-            meditatia: doc.data().Meditatia,
-            rugaciune: doc.data().Rugaciune,
-            indemn: doc.data().Indemn
-          };
-          arrayM.push(news);
-        });
-        this.setState({ imGood: arrayM }, () => {
-          console.log('here');
-          console.log('first async');
-          try {
-            AsyncStorage.setItem('arrayM', JSON.stringify(arrayM));
-            console.log('set it');
-          } catch (error) {
-            // Error retrieving data
-            console.log('error.message');
-          }
-        });
+    try {
+      const db = firebase.firestore();
+      db.settings({
+        timestampsInSnapshots: true
       });
+      db.collection('Advent')
+        .get()
+        .then(querySnapshot => {
+          let arrayM = [];
+          querySnapshot.forEach(function(doc) {
+            let data = doc.data();
+            let news = {
+              autori: doc.data().Autori,
+              evanghelia: doc.data().Evanghelia,
+              id: doc.data().title,
+              linkPhoto: doc.data().LinkPhoto,
+              color: doc.data().color,
+              meditatia: doc.data().Meditatia,
+              rugaciune: doc.data().Rugaciune,
+              indemn: doc.data().Indemn
+            };
+            arrayM.push(news);
+          });
+          this.setState({ imGood: arrayM }, () => {
+            console.log('here');
+            console.log('first async');
+            try {
+              AsyncStorage.setItem('arrayM', JSON.stringify(arrayM));
+              console.log('set it');
+            } catch (error) {
+              // Error retrieving data
+              console.log('error.message');
+            }
+          });
+        });
+    } catch {
+      console.log(error);
+    }
   };
   retrieveData = async () => {
     try {
@@ -91,28 +95,30 @@ class Main extends Component {
     console.log('state', this.state);
     return (
       <ScrollView>
-        <List>
-          {imGood.map(item => (
+        <List containerStyle={{ marginTop: 0 }}>
+          {imGood.map((item, index) => (
             <ListItem
-              key={item.autori}
-              containerStyle={{ backgroundColor: item.color || 'green' }}
+              key={index}
+              containerStyle={{
+                backgroundColor: item.color || 'green'
+              }}
               roundAvatar
               avatar={{ uri: item.linkPhoto }}
-              title={item.id}
-              subtitle={item.autori}
+              title={
+                <Text style={{ color: 'white', paddingLeft: 10 }}>
+                  {item.id}
+                </Text>
+              }
+              subtitle={
+                <Text style={{ color: 'white', paddingLeft: 10 }}>
+                  {item.autori}
+                </Text>
+              }
               onPress={() => this.onLearnMore(item)}
             />
           ))}
         </List>
-        <Button onPress={() => this.callFirestore()} title={'Reload Data'}>
-          Something
-        </Button>
-        {/* {this.state.docs.length && (
-          <View>
-            <Text>some</Text>
-          </View>
-        )} */}
-        {/* <Text>{this.state.docs.length && .Autori}</Text> */}
+        <Button onPress={() => this.callFirestore()} title={'Refresh'} />
       </ScrollView>
     );
   }

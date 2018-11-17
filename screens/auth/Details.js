@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Image, TouchableHighlight } from 'react-native';
 import { Tile, List, ListItem, Text } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -16,37 +16,59 @@ class Details extends Component {
     onPressEvangh = value => {
       console.log(value);
     };
-    const evangheliaIcon = (
-      <Icon
-        name="wikipedia-w"
-        size={100}
-        color="#900"
+    const evangheliaImage = (
+      <TouchableHighlight
         onPress={() => onLearnMore(item, (value = 'evanghelia'))}
-      />
+      >
+        <Image
+          style={{
+            width: styleIcon,
+            height: styleIcon,
+            tintColor: item.color || '#123456'
+          }}
+          source={require('../../assets/images/holy-bible-xxl.png')}
+        />
+      </TouchableHighlight>
     );
-    const meditatiaIcon = (
-      <Icon
-        name="commenting"
-        size={100}
-        color="#b4f324"
+    const meditatiaImage = (
+      <TouchableHighlight
         onPress={() => onLearnMore(item, (value = 'meditatie'))}
-      />
+      >
+        <Image
+          style={{
+            width: styleIcon,
+            height: styleIcon,
+            tintColor: item.color || '#123456'
+          }}
+          source={require('../../assets/images/idea.png')}
+        />
+      </TouchableHighlight>
     );
-    const rugaciuneIcon = (
-      <Icon
-        name="arrow-left"
-        size={100}
-        color="#f12345"
+    const rugaciuneImage = (
+      <TouchableHighlight
         onPress={() => onLearnMore(item, (value = 'rugaciune'))}
-      />
+      >
+        <Image
+          style={{
+            width: styleIcon,
+            height: styleIcon,
+            tintColor: item.color || '#123456'
+          }}
+          source={require('../../assets/images/praying.png')}
+        />
+      </TouchableHighlight>
     );
-    const gandIcon = (
-      <Icon
-        name="quote-right"
-        size={100}
-        color="#654321"
-        onPress={() => onLearnMore(item, (value = 'gand'))}
-      />
+    const indemnImage = (
+      <TouchableHighlight onPress={() => onLearnMore(item, (value = 'indemn'))}>
+        <Image
+          style={{
+            width: styleIcon,
+            height: styleIcon,
+            tintColor: item.color || '#123456'
+          }}
+          source={require('../../assets/images/running.png')}
+        />
+      </TouchableHighlight>
     );
     return (
       <ScrollView>
@@ -60,30 +82,32 @@ class Details extends Component {
         <View style={{ margin: 'auto' }}>
           <View
             style={{
+              marginTop: 10,
               flex: 1,
               flexDirection: 'row',
               justifyContent: 'space-evenly'
             }}
           >
             <View style={{ width: styleIcon, height: styleIcon }}>
-              {evangheliaIcon}
+              {evangheliaImage}
             </View>
             <View style={{ width: styleIcon, height: styleIcon }}>
-              {meditatiaIcon}
+              {meditatiaImage}
             </View>
           </View>
           <View
             style={{
+              marginTop: 20,
               flex: 1,
               flexDirection: 'row',
               justifyContent: 'space-evenly'
             }}
           >
             <View style={{ width: styleIcon, height: styleIcon }}>
-              {gandIcon}
+              {indemnImage}
             </View>
             <View style={{ width: styleIcon, height: styleIcon }}>
-              {rugaciuneIcon}
+              {rugaciuneImage}
             </View>
           </View>
         </View>

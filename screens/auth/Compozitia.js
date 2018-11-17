@@ -13,7 +13,7 @@ class Compozitia extends Component {
       content = item.meditatia;
     } else if (value === 'rugaciune') {
       content = item.rugaciune;
-    } else if (value === 'gand') {
+    } else if (value === 'indemn') {
       content = item.indemn;
     }
     return (

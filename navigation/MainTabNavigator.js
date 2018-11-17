@@ -31,19 +31,20 @@ HomeStack.navigationOptions = {
   )
 };
 
-const MainStack = createStackNavigator({
+const Acasa = createStackNavigator({
   Main: {
     screen: Main,
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#27A9E1',
+        backgroundColor: '#073F50',
         shadowColor: 'white',
         elevation: 0,
         marginTop: -10,
         height: 40
       },
       tabBarLabel: 'Home',
-      title: 'Itinerar',
+      title: 'O ancora pentru inima mea',
+      headerTintColor: 'white',
       tabBarLabel: 'Feed',
       tabBarIcon: ({ tintColor }) => (
         <Icon name="list" size={35} color={tintColor} />
@@ -54,8 +55,9 @@ const MainStack = createStackNavigator({
     screen: Details,
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.item.id}`,
+      headerTintColor: 'white',
       headerStyle: {
-        backgroundColor: '#27A9E1',
+        backgroundColor: '#073F50',
         shadowColor: 'white',
         elevation: 0,
         marginTop: -10,
@@ -67,6 +69,7 @@ const MainStack = createStackNavigator({
     screen: Compozitia,
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.value.toUpperCase()}`,
+      headerTintColor: 'white',
       headerStyle: {
         backgroundColor: '#27A9E1',
         shadowColor: 'white',
@@ -79,5 +82,5 @@ const MainStack = createStackNavigator({
 });
 
 export default createBottomTabNavigator({
-  MainStack
+  Acasa
 });
