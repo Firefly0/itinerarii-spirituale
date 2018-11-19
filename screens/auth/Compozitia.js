@@ -9,11 +9,11 @@ class Compozitia extends Component {
     let content;
     if (value === 'evanghelia') {
       content = item.evanghelia;
-    } else if (value === 'meditatie') {
+    } else if (value === 'meditaţie') {
       content = item.meditatia;
-    } else if (value === 'rugaciune') {
+    } else if (value === 'rugăciune') {
       content = item.rugaciune;
-    } else if (value === 'indemn') {
+    } else if (value === 'îndemn') {
       content = item.indemn;
     }
     return (

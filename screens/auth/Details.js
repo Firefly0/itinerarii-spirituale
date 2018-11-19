@@ -32,7 +32,7 @@ class Details extends Component {
     );
     const meditatiaImage = (
       <TouchableHighlight
-        onPress={() => onLearnMore(item, (value = 'meditatie'))}
+        onPress={() => onLearnMore(item, (value = 'meditaţie'))}
       >
         <Image
           style={{
@@ -46,7 +46,7 @@ class Details extends Component {
     );
     const rugaciuneImage = (
       <TouchableHighlight
-        onPress={() => onLearnMore(item, (value = 'rugaciune'))}
+        onPress={() => onLearnMore(item, (value = 'rugăciune'))}
       >
         <Image
           style={{
@@ -58,8 +58,8 @@ class Details extends Component {
         />
       </TouchableHighlight>
     );
-    const indemnImage = (
-      <TouchableHighlight onPress={() => onLearnMore(item, (value = 'indemn'))}>
+    const îndemnImage = (
+      <TouchableHighlight onPress={() => onLearnMore(item, (value = 'îndemn'))}>
         <Image
           style={{
             width: styleIcon,
@@ -104,7 +104,7 @@ class Details extends Component {
             }}
           >
             <View style={{ width: styleIcon, height: styleIcon }}>
-              {indemnImage}
+              {îndemnImage}
             </View>
             <View style={{ width: styleIcon, height: styleIcon }}>
               {rugaciuneImage}

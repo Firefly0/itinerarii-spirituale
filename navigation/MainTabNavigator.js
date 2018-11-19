@@ -43,7 +43,16 @@ const Acasa = createStackNavigator({
         height: 40
       },
       tabBarLabel: 'Home',
-      title: 'O ancora pentru inima mea',
+      title: 'O ancoră pentru inima mea',
+      ...Platform.select({
+        android: {
+          headerTitleStyle: {
+            textAlign: 'center',
+            flex: 1
+          }
+        }
+      }),
+      headerLayoutPreset: 'center',
       headerTintColor: 'white',
       tabBarLabel: 'Feed',
       tabBarIcon: ({ tintColor }) => (
@@ -54,14 +63,25 @@ const Acasa = createStackNavigator({
   Details: {
     screen: Details,
     navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.params.item.id}`,
+      title: `${navigation.state.params.item.title}`,
+      ...Platform.select({
+        android: {
+          headerTitleStyle: {
+            textAlign: 'center',
+            flex: 1,
+            marginLeft: -30
+          }
+        }
+      }),
       headerTintColor: 'white',
+      headerLayoutPreset: 'center',
       headerStyle: {
         backgroundColor: '#073F50',
         shadowColor: 'white',
         elevation: 0,
         marginTop: -10,
-        height: 40
+        height: 40,
+        textAlign: 'center'
       }
     })
   },
@@ -69,13 +89,24 @@ const Acasa = createStackNavigator({
     screen: Compozitia,
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.value.toUpperCase()}`,
+      ...Platform.select({
+        android: {
+          headerTitleStyle: {
+            textAlign: 'center',
+            flex: 1,
+            marginLeft: -30
+          }
+        }
+      }),
       headerTintColor: 'white',
+      headerLayoutPreset: 'center',
       headerStyle: {
-        backgroundColor: '#27A9E1',
+        backgroundColor: '#073F50',
         shadowColor: 'white',
         elevation: 0,
         marginTop: -10,
-        height: 40
+        height: 40,
+        textAlign: 'center'
       }
     })
   }
