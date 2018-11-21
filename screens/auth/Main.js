@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, AsyncStorage, AppState } from 'react-native';
 import { List, ListItem, Button } from 'react-native-elements';
 import { users } from '../../constants/data';
-import { AsyncStorage } from 'react-native';
 
 import ApiKeys from '../../constants/ApiKeys';
 import * as firebase from 'firebase';
@@ -12,7 +11,9 @@ class Main extends Component {
     super();
     this.state = {
       docs: [],
-      imGood: []
+      imGood: [],
+      introducere: {},
+      appState: AppState.currentState
     };
 
     //Initialize firebase
@@ -33,8 +34,11 @@ class Main extends Component {
         timestampsInSnapshots: true
       });
 
-      /* 
-
+      const culoareSaptamana1 = '#703F7D';
+      const culoareSaptamana2 = '#82568B';
+      const culoareSaptamana3 = '#8A6694';
+      const culoareSaptamana4 = '#A17EA8';
+      const culoareCraciun = culoareCraciun;
 
       // Saptamana 1
 
@@ -45,6 +49,7 @@ class Main extends Component {
           autori: 'Noi si voi',
           evanghelia:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          evanghelia2: 'imply dummy text of the printing and typesetting indus',
           indemn:
             "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)",
           meditatia:
@@ -53,7 +58,7 @@ class Main extends Component {
             'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.',
           linkphoto:
             'https://cdn2-www.dogtime.com/assets/uploads/2011/03/puppy-development-460x306.jpg',
-          culoare: '#540074',
+          culoare: culoareSaptamana1,
           publicare: 'true',
           id: '0'
         })
@@ -64,6 +69,7 @@ class Main extends Component {
           console.error('Error writing document: ', error);
         });
 
+      /*
       db.collection('Advent')
         .doc('12 Luni, 3 decembrie 2018')
         .set({
@@ -74,7 +80,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#540074',
+          culoare: culoareSaptamana1,
           publicare: 'true',
           id: '1'
         })
@@ -94,7 +100,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#540074',
+          culoare: culoareSaptamana1,
           publicare: 'true',
           id: '2'
         })
@@ -114,7 +120,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#540074',
+          culoare: culoareSaptamana1,
           publicare: 'true',
           id: '3'
         })
@@ -134,7 +140,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#540074',
+          culoare: culoareSaptamana1,
           publicare: 'true',
           id: '4'
         })
@@ -154,7 +160,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#540074',
+          culoare: culoareSaptamana1,
           publicare: 'true',
           id: '5'
         })
@@ -174,7 +180,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#540074',
+          culoare: culoareSaptamana1,
           publicare: 'true',
           id: '6'
         })
@@ -197,7 +203,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#931499',
+          culoare: culoareSaptamana2,
           publicare: 'true',
           id: '7'
         })
@@ -217,7 +223,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#931499',
+          culoare: culoareSaptamana2,
           publicare: 'true',
           id: '8'
         })
@@ -237,7 +243,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#931499',
+          culoare: culoareSaptamana2,
           publicare: 'true',
           id: '9'
         })
@@ -257,7 +263,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#931499',
+          culoare: culoareSaptamana2,
           publicare: 'true',
           id: '10'
         })
@@ -277,7 +283,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#931499',
+          culoare: culoareSaptamana2,
           publicare: 'true',
           id: '11'
         })
@@ -297,7 +303,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#931499',
+          culoare: culoareSaptamana2,
           publicare: 'true',
           id: '12'
         })
@@ -317,7 +323,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#931499',
+          culoare: culoareSaptamana2,
           publicare: 'true',
           id: '13'
         })
@@ -340,7 +346,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#E458B9',
+          culoare: culoareSaptamana3,
           publicare: 'true',
           id: '14'
         })
@@ -360,7 +366,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#E458B9',
+          culoare: culoareSaptamana3,
           publicare: 'true',
           id: '15'
         })
@@ -380,7 +386,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#E458B9',
+          culoare: culoareSaptamana3,
           publicare: 'true',
           id: '16'
         })
@@ -400,7 +406,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#E458B9',
+          culoare: culoareSaptamana3,
           publicare: 'true',
           id: '17'
         })
@@ -420,7 +426,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#E458B9',
+          culoare: culoareSaptamana3,
           publicare: 'true',
           id: '18'
         })
@@ -440,7 +446,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#E458B9',
+          culoare: culoareSaptamana3,
           publicare: 'true',
           id: '19'
         })
@@ -460,7 +466,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#E458B9',
+          culoare: culoareSaptamana3,
           publicare: 'true',
           id: '20'
         })
@@ -483,7 +489,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#EF81BD',
+          culoare: culoareSaptamana4,
           publicare: 'true',
           id: '21'
         })
@@ -503,7 +509,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#EF81BD',
+          culoare: culoareSaptamana4,
           publicare: 'true',
           id: '22'
         })
@@ -526,7 +532,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '23'
         })
@@ -547,7 +553,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '24'
         })
@@ -568,7 +574,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '25'
         })
@@ -589,7 +595,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '26'
         })
@@ -610,7 +616,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '27'
         })
@@ -631,7 +637,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '28'
         })
@@ -654,7 +660,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '29'
         })
@@ -675,7 +681,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '30'
         })
@@ -696,7 +702,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '31'
         })
@@ -717,7 +723,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '32'
         })
@@ -738,7 +744,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '33'
         })
@@ -759,7 +765,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '34'
         })
@@ -780,7 +786,7 @@ class Main extends Component {
           meditatia: '',
           rugaciune: '',
           linkphoto: '',
-          culoare: '#307185',
+          culoare: culoareCraciun,
           publicare: 'true',
           id: '35'
         })
@@ -796,11 +802,20 @@ class Main extends Component {
         .get()
         .then(querySnapshot => {
           let arrayM = [];
+          let introducere;
           querySnapshot.forEach(function(doc) {
             let data = doc.data();
+            if (doc.data().introducere) {
+              introducere = {
+                introducere: doc.data().introducere,
+                introducere1: doc.data().introducere1,
+                introducere2: doc.data().introducere2
+              };
+            }
             let news = {
               autori: doc.data().autori,
               evanghelia: doc.data().evanghelia,
+              evanghelia2: doc.data().evanghelia2,
               id: doc.data().id,
               title: doc.data().title,
               linkPhoto:
@@ -814,29 +829,37 @@ class Main extends Component {
             };
             arrayM.push(news);
           });
-          this.setState({ imGood: arrayM }, () => {
-            console.log('here');
-            console.log('first async');
+          this.setState({ imGood: arrayM, introducere }, () => {
             try {
               AsyncStorage.setItem('arrayM', JSON.stringify(arrayM));
-              console.log('set it');
+              console.log('stateafteri', this.state);
+            } catch (error) {
+              // Error retrieving data
+              console.log('error.message');
+            }
+            try {
+              AsyncStorage.setItem('introducere', JSON.stringify(introducere));
             } catch (error) {
               // Error retrieving data
               console.log('error.message');
             }
           });
         });
-    } catch {
+    } catch (error) {
       console.log(error);
     }
   };
   retrieveData = async () => {
     try {
       const value = await AsyncStorage.getItem('arrayM');
+      const introducere = await AsyncStorage.getItem('introducere');
       if (value !== null) {
-        this.setState({ imGood: JSON.parse(value) }, () => {
-          console.log('newState', this.state);
-        });
+        this.setState({ imGood: JSON.parse(value) }, () => {});
+      } else {
+        console.log('no data found');
+      }
+      if (introducere !== null) {
+        this.setState({ introducere: JSON.parse(introducere) }, () => {});
       } else {
         console.log('no data found');
       }
@@ -848,20 +871,34 @@ class Main extends Component {
   componentDidMount() {
     this.retrieveData();
     this.callFirestore();
+    AppState.addEventListener('change', this._handleAppStateChange);
   }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  _handleAppStateChange = nextAppState => {
+    if (
+      this.state.appState.match(/inactive|background/) &&
+      nextAppState === 'active'
+    ) {
+      this.callFirestore();
+    }
+    this.setState({ appState: nextAppState });
+  };
 
   onLearnMore = item => {
     this.props.navigation.navigate('Details', { item });
   };
 
   render() {
+    console.log('int', this.state.introducere.introducere);
     const { imGood } = this.state;
     const imGoodResult = imGood.filter(item => item.publicare);
     imGoodResult.sort(function(a, b) {
       return b.id - a.id;
     });
-    console.log('sort', imGoodResult);
-    console.log('state', this.state);
     return (
       <ScrollView>
         <List containerStyle={{ marginTop: 0 }}>
@@ -886,8 +923,28 @@ class Main extends Component {
               onPress={() => this.onLearnMore(item)}
             />
           ))}
+          <ListItem
+            title={
+              <Text
+                style={{
+                  color: 'white',
+                  paddingLeft: 10,
+                  fontSize: 20,
+                  textAlign: 'center'
+                }}
+              >
+                Introducere
+              </Text>
+            }
+            containerStyle={{
+              backgroundColor: '#310C37'
+            }}
+          />
         </List>
-        <Button onPress={() => this.callFirestore()} title={'Refresh'} />
+        <Text>Something</Text>
+        <Text>{this.state.introducere.introducere}</Text>
+        <Text>{this.state.introducere.introducere1}</Text>
+        <Text>{this.state.introducere.introducere2}</Text>
       </ScrollView>
     );
   }

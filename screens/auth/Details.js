@@ -18,7 +18,7 @@ class Details extends Component {
     };
     const evangheliaImage = (
       <TouchableHighlight
-        onPress={() => onLearnMore(item, (value = 'evanghelia'))}
+        onPress={() => onLearnMore(item, (value = 'Citesc!'))}
       >
         <Image
           style={{
@@ -32,7 +32,7 @@ class Details extends Component {
     );
     const meditatiaImage = (
       <TouchableHighlight
-        onPress={() => onLearnMore(item, (value = 'meditaţie'))}
+        onPress={() => onLearnMore(item, (value = 'Reflectez!'))}
       >
         <Image
           style={{
@@ -46,7 +46,7 @@ class Details extends Component {
     );
     const rugaciuneImage = (
       <TouchableHighlight
-        onPress={() => onLearnMore(item, (value = 'rugăciune'))}
+        onPress={() => onLearnMore(item, (value = 'Mă rog!'))}
       >
         <Image
           style={{
@@ -59,7 +59,9 @@ class Details extends Component {
       </TouchableHighlight>
     );
     const îndemnImage = (
-      <TouchableHighlight onPress={() => onLearnMore(item, (value = 'îndemn'))}>
+      <TouchableHighlight
+        onPress={() => onLearnMore(item, (value = 'Practic!'))}
+      >
         <Image
           style={{
             width: styleIcon,

@@ -7,13 +7,15 @@ class Compozitia extends Component {
   render() {
     const { item, value } = this.props.navigation.state.params;
     let content;
-    if (value === 'evanghelia') {
+    let content2;
+    if (value === 'Citesc!') {
+      content2 = item.evanghelia2;
       content = item.evanghelia;
-    } else if (value === 'meditaţie') {
+    } else if (value === 'Reflectez!') {
       content = item.meditatia;
-    } else if (value === 'rugăciune') {
+    } else if (value === 'Mă rog!') {
       content = item.rugaciune;
-    } else if (value === 'îndemn') {
+    } else if (value === 'Practic!') {
       content = item.indemn;
     }
     return (
@@ -25,7 +27,12 @@ class Compozitia extends Component {
             marginLeft: 12
           }}
         >
-          <Text> {content}</Text>
+          <Text style={{ fontSize: 16 }}>
+            {' '}
+            <Text style={{ fontSize: 20 }}>{content2}</Text>
+            {'\n'}
+            {content}
+          </Text>
         </View>
       </ScrollView>
     );
