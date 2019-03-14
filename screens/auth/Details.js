@@ -12,10 +12,6 @@ class Details extends Component {
     onLearnMore = (item, value) => {
       this.props.navigation.navigate('Compozitia', { item, value });
     };
-
-    onPressEvangh = value => {
-      console.log(value);
-    };
     const evangheliaImage = (
       <TouchableHighlight
         onPress={() => onLearnMore(item, (value = 'Citesc!'))}
@@ -78,7 +74,13 @@ class Details extends Component {
           <Tile
             imageSrc={{ uri: item.linkPhoto }}
             featured
-            title={item.autori}
+            title={
+              <Text style={{ fontSize: 20 }}>
+                <Text style={{ fontSize: 28 }}>{item.TitluCeAparePePoza}</Text>
+                {'\n'}
+                {item.autori}
+              </Text>
+            }
           />
         </View>
         <View style={{ margin: 'auto' }}>

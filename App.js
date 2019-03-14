@@ -13,7 +13,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log('state', this.state);
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -25,7 +24,7 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          {/* {Platform.OS === 'ios' && <StatusBar barStyle="default" />} */}
           <AppNavigator state={this.state} />
         </View>
       );
@@ -61,6 +60,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     paddingTop: 20
-    // marginTop: -10
   }
 });

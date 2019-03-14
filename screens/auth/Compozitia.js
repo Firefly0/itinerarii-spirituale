@@ -6,17 +6,26 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 class Compozitia extends Component {
   render() {
     const { item, value } = this.props.navigation.state.params;
-    let content;
+    let content1;
     let content2;
+    let content3;
+    let content4;
+    let content5;
+    let content6;
     if (value === 'Citesc!') {
-      content2 = item.evanghelia2;
-      content = item.evanghelia;
+      content6 = item.evanghelia1;
+      content1 = item.evanghelia2;
     } else if (value === 'Reflectez!') {
-      content = item.meditatia;
+      content1 = item.meditatia1;
+      content2 = item.meditatia2;
+      content3 = item.meditatia3;
+      content4 = item.meditatia4;
+      content5 = item.meditatia5;
     } else if (value === 'Mă rog!') {
-      content = item.rugaciune;
+      content1 = item.rugaciune;
     } else if (value === 'Practic!') {
-      content = item.indemn;
+      content6 = item.indemn1;
+      content1 = item.indemn2;
     }
     return (
       <ScrollView style={{ backgroundColor: 'azure' }}>
@@ -27,11 +36,44 @@ class Compozitia extends Component {
             marginLeft: 12
           }}
         >
-          <Text style={{ fontSize: 16 }}>
-            {' '}
-            <Text style={{ fontSize: 20 }}>{content2}</Text>
-            {'\n'}
-            {content}
+          <Text style={{ fontSize: 20, textAlign: 'justify' }}>
+            {content6 && (
+              <Text>
+                {'\t'}
+                {content6}
+              </Text>
+            )}
+          </Text>
+
+          <Text
+            style={{ fontSize: 16, marginBottom: 16, textAlign: 'justify' }}
+          >
+            {'\t'}
+            {content1}
+          </Text>
+          <Text
+            style={{ fontSize: 16, marginBottom: 16, textAlign: 'justify' }}
+          >
+            {'\t'}
+            {content2}
+          </Text>
+          <Text
+            style={{ fontSize: 16, marginBottom: 16, textAlign: 'justify' }}
+          >
+            {'\t'}
+            {content3}
+          </Text>
+          <Text
+            style={{ fontSize: 16, marginBottom: 16, textAlign: 'justify' }}
+          >
+            {'\t'}
+            {content4}
+          </Text>
+          <Text
+            style={{ fontSize: 16, marginBottom: 16, textAlign: 'justify' }}
+          >
+            {'\t'}
+            {content5}
           </Text>
         </View>
       </ScrollView>
