@@ -1,6 +1,7 @@
 # itinerarii-spirituale
 
 React Native app built with Expo for my local comunity
+
 Technologies used:
 
 React
